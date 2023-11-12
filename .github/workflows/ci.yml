@@ -1,0 +1,35 @@
+name: Install Cloudflare Bypasser
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4' # Choose the PHP version you need
+
+    - name: Install Composer dependencies
+      run: |
+        composer install
+
+    - name: Require Cloudflare Bypasser
+      run: |
+        composer require Ihsandevs/cloudflare-bypasser
+
+    - name: Show installed packages
+      run: |
+        composer show
+
+    - name: Run tests or other actions
+      run: |
+        # Add any additional commands or actions you want to perform after installing the package
